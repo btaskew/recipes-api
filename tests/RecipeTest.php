@@ -9,8 +9,10 @@ class RecipeTest extends TestCase
     public function can_add_a_new_recipe()
     {
         $this->post('/recipes', ['name' => 'Test recipe'])
-            ->seeInDatabase('recipes', ['name' => 'Test recipe']);
+            ->seeInDatabase('recipes', ['name' => 'Test recipe'])
+            ->assertResponseStatus(200);
 
+        $this->assertContains('success', $this->response->content());
         $this->assertContains('recipe_id', $this->response->content());
     }
 
