@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Recipe;
 use Illuminate\Http\Request;
+use Laravel\Lumen\Routing\Controller;
 
 class IngredientRecipesController extends Controller
 {
