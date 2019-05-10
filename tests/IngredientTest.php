@@ -1,5 +1,6 @@
 <?php
 
+use App\Ingredient;
 use App\Recipe;
 
 class IngredientTest extends TestCase
@@ -22,5 +23,17 @@ class IngredientTest extends TestCase
         $recipe = factory(Recipe::class)->create();
 
         $this->post('recipes/' . $recipe->id . '/ingredients', [])->assertResponseStatus(422);
+    }
+
+    /** @test */
+    public function cant_add_same_ingredient_twice_to_the_same_recipe()
+    {
+        $recipe = factory(Recipe::class)->create();
+        $ingredient = factory(Ingredient::class)->create(['recipe_id' => $recipe->id]);
+
+        $this->post('recipes/' . $recipe->id . '/ingredients', ['name' => $ingredient->name])
+            ->assertResponseStatus(422);
+
+        $this->assertContains('Ingredient present', $this->response->content());
     }
 }

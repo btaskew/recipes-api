@@ -19,6 +19,10 @@ class IngredientsController extends Controller
             'name' => 'required|string'
         ])['name'];
 
+        if ($recipe->ingredients()->where('name', $name)->exists()) {
+            return response()->json(['error' => 'Ingredient present'], 422);
+        }
+
         $recipe->ingredients()->create(compact('name'));
 
         return response()->json(['success' => 'Ingredient added']);
