@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Routing\Controller;
 
 class IngredientRecipesController extends Controller
@@ -11,7 +12,7 @@ class IngredientRecipesController extends Controller
     /**
      * @param Request $request
      * @return mixed
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     public function show(Request $request)
     {
