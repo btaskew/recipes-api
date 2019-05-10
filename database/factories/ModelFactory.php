@@ -1,5 +1,8 @@
 <?php
 
+use App\Ingredient;
+use App\Recipe;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -11,9 +14,19 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+/** @var \Faker\Factory $factory */
+
+$factory->define(Recipe::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
+        'name' => $faker->word,
+    ];
+});
+
+$factory->define(Ingredient::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'recipe_id' => function () {
+            return factory(Recipe::class)->create()->id;
+        }
     ];
 });
