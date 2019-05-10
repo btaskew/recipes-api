@@ -17,3 +17,5 @@ $router->post('recipes', 'RecipesController@store');
 $router->get('recipes/{recipe}', 'RecipesController@show');
 
 $router->post('recipes/{recipe}/ingredients', 'IngredientsController@store');
+
+$router->get('ingredients/recipes', 'IngredientRecipesController@show');
