@@ -19,7 +19,7 @@ abstract class TestCase extends Laravel\Lumen\Testing\TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->disableExceptionHandling();
+//        $this->disableExceptionHandling();
     }
 
     /**
