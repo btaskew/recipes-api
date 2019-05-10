@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 class RecipesController extends Controller
 {
     /**
+     * @param Recipe $recipe
+     * @return Recipe
+     */
+    public function show(Recipe $recipe)
+    {
+        return $recipe->load('ingredients');
+    }
+
+    /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
