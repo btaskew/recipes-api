@@ -12,8 +12,7 @@ class RecipeTest extends TestCase
             ->seeInDatabase('recipes', ['name' => 'Test recipe'])
             ->assertResponseStatus(200);
 
-        $this->assertContains('success', $this->response->content());
-        $this->assertContains('recipe_id', $this->response->content());
+        $this->assertContains('Test recipe', $this->response->content());
     }
 
     /** @test */

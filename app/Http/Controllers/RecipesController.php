@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Recipe;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Routing\Controller;
@@ -21,7 +20,7 @@ class RecipesController extends Controller
 
     /**
      * @param Request $request
-     * @return JsonResponse
+     * @return Recipe
      * @throws ValidationException
      */
     public function store(Request $request)
@@ -30,11 +29,6 @@ class RecipesController extends Controller
             'name' => 'required|string'
         ])['name'];
 
-        $recipe = Recipe::create(compact('name'));
-
-        return response()->json([
-            'success' => 'Recipe created',
-            'recipe_id' => $recipe->id
-        ]);
+        return Recipe::create(compact('name'));
     }
 }
