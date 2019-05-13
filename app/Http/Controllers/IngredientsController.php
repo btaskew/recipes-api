@@ -13,7 +13,7 @@ class IngredientsController extends Controller
     /**
      * @param Recipe  $recipe
      * @param Request $request
-     * @return JsonResponse
+     * @return \Illuminate\Database\Eloquent\Model|JsonResponse
      * @throws ValidationException
      */
     public function store(Recipe $recipe, Request $request)
@@ -26,8 +26,6 @@ class IngredientsController extends Controller
             return response()->json(['error' => 'Ingredient present'], 422);
         }
 
-        $recipe->ingredients()->create(compact('name'));
-
-        return response()->json(['success' => 'Ingredient added']);
+        return $recipe->ingredients()->create(compact('name'));
     }
 }

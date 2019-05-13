@@ -14,7 +14,7 @@ class IngredientTest extends TestCase
             ->seeInDatabase('ingredients', ['name' => 'Test ingredient', 'recipe_id' => $recipe->id])
             ->assertResponseStatus(200);
 
-        $this->assertContains('success', $this->response->content());
+        $this->assertContains('Test ingredient', $this->response->content());
     }
 
     /** @test */
